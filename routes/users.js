@@ -29,6 +29,22 @@ router.get('/queryinfo',function(req,res,next){
       responseJSON(res, result)
     })
   })
+})
 
+router.post('/queryAllTable',function (req,res,next) {
+  var param = req.body
+  console.log('xx',param)
+  pool.getConnection(function (err,conn) {
+    conn.query(Usersql.QUERYAll,function (err, result) {
+      if (result){
+        var resultJSON = {
+          success:true,
+          data:result
+        }
+      }
+      conn.release()
+      res.send(resultJSON)
+    })
+  })
 })
 module.exports = router;

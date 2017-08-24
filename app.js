@@ -10,6 +10,17 @@ var users = require('./routes/users');
 
 var app = express();
 
+//支持全路径跨域
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*'); //允许跨域的origin
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With');
+  //服务器支持的所有头信息字段
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS'); //允许跨域的请求方式
+  res.header('X-Powered-By', ' 3.2.1')
+  res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
