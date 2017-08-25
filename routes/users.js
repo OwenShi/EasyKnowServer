@@ -47,4 +47,15 @@ router.post('/queryAllTable',function (req,res,next) {
     })
   })
 })
+
+router.post('/submitConfig',function (req,res,next) {
+  var param = req.body
+  console.log('pp',req)
+  var resultJSON = {
+    data:'xxx',
+    msg:'heng',
+    success:true
+  }
+  res.send(resultJSON)
+})
 module.exports = router;
