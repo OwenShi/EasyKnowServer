@@ -27,13 +27,22 @@ router.get('/queryinfo',function(req,res,next){
       }
       conn.release()
       responseJSON(res, result)
+
+
+      
     })
   })
 })
 
 router.post('/queryAllTable',function (req,res,next) {
-  var param = req.body
-  console.log('xx',param)
+  try {
+    console.log('xx',arguments)
+    var param = req.request.body
+    console.log('this',this)
+  }catch(e){
+    console.log(e);
+  }
+
   pool.getConnection(function (err,conn) {
     conn.query(Usersql.QUERYAll,function (err, result) {
       if (result){
@@ -50,7 +59,7 @@ router.post('/queryAllTable',function (req,res,next) {
 
 router.post('/submitConfig',function (req,res,next) {
   var param = req.body
-  console.log('pp',req)
+  console.log('pp',param)
   var resultJSON = {
     data:'xxx',
     msg:'heng',
